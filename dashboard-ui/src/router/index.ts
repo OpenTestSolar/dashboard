@@ -1,8 +1,10 @@
 import React, { lazy } from 'react';
 import { BrowserRouterProps } from 'react-router-dom';
-import list from './modules/list';
-import form from './modules/form';
+import list from './modules/images';
+import form from './modules/tasks';
 import login from './modules/login';
+import otherRoutes from './modules/others';
+import records from './modules/records';
 
 export interface IRouter {
   path: string;
@@ -45,6 +47,6 @@ const routes: IRouter[] = [
   },
 ];
 
-const allRoutes = [...routes, ...list, ...form, ...login];
+const allRoutes = [...routes, ...list, ...form, ...records, ...otherRoutes, ...login];
 
 export default allRoutes;
