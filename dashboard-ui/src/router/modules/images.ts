@@ -9,7 +9,7 @@ const images: IRouter[] = [
       title: '镜像库',
       Icon: ViewModuleIcon,
     },
-    Component: lazy(() => import('pages/List/Base')),
+    Component: lazy(() => import('pages/List/Select')),
   },
 ];
 

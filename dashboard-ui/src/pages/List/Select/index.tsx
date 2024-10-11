@@ -1,9 +1,9 @@
-import React, { useState, memo, useEffect } from 'react';
-import { Table, Dialog, Button, Row } from 'tdesign-react';
+import React, { memo, useEffect, useState } from 'react';
+import { Button, Dialog, Row, Table } from 'tdesign-react';
 import { useAppDispatch, useAppSelector } from 'modules/store';
-import { selectListSelect, getList, clearPageState } from 'modules/list/select';
+import { clearPageState, getList, selectListSelect } from 'modules/list/select';
 import SearchForm from './components/SearchForm';
-import { StatusMap, ContractTypeMap, PaymentTypeMap } from '../Base';
+import { ContractTypeMap, PaymentTypeMap, StatusMap } from '../Base';
 
 import './index.module.less';
 import classnames from 'classnames';
