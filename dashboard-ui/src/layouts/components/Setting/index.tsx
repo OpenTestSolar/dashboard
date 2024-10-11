@@ -1,19 +1,8 @@
 import React, { memo } from 'react';
-import { Row, Col, Switch } from 'tdesign-react';
+import { Col, Row, Switch } from 'tdesign-react';
 import { useAppDispatch, useAppSelector } from 'modules/store';
-import {
-  selectGlobal,
-  toggleShowHeader,
-  toggleShowBreadcrumbs,
-  toggleShowFooter,
-  switchTheme,
-  switchColor,
-  switchLayout,
-  openSystemTheme,
-  ELayout,
-} from 'modules/global';
+import { openSystemTheme, selectGlobal, switchColor, switchTheme, toggleShowBreadcrumbs } from 'modules/global';
 import { ETheme } from 'types/index.d';
-import RadioColor from './RadioColor';
 import RadioRect from './RadioRect';
 
 import Light from 'assets/svg/assets-setting-light.svg?react';
@@ -44,21 +33,6 @@ const themeList = [
   },
 ];
 
-const layoutList = [
-  {
-    value: ELayout.side,
-    image: 'https://tdesign.gtimg.com/starter/setting/side.png',
-  },
-  {
-    value: ELayout.top,
-    image: 'https://tdesign.gtimg.com/starter/setting/top.png',
-  },
-  {
-    value: ELayout.mix,
-    image: 'https://tdesign.gtimg.com/starter/setting/mix.png',
-  },
-];
-
 export default memo(() => {
   const dispatch = useAppDispatch();
   const globalState = useAppSelector(selectGlobal);
@@ -81,25 +55,7 @@ export default memo(() => {
         options={themeList}
       />
 
-      <div className={Style.settingTitle}>主题色</div>
-      <RadioColor defaultValue={globalState.color} onChange={(value) => dispatch(switchColor(value))} />
-
-      <div className={Style.settingTitle}>导航布局</div>
-      <RadioRect
-        defaultValue={globalState.layout}
-        onChange={(value) => dispatch(switchLayout(value))}
-        options={layoutList}
-      />
-
       <div className={Style.settingTitle}>元素开关</div>
-      <Row justify='space-between'>
-        <Col>
-          <div className={Style.settingSubTitle}>显示 Header</div>
-        </Col>
-        <Col>
-          <Switch size='large' value={globalState.showHeader} onChange={() => dispatch(toggleShowHeader())} />
-        </Col>
-      </Row>
 
       <Row justify='space-between'>
         <Col>
@@ -107,15 +63,6 @@ export default memo(() => {
         </Col>
         <Col>
           <Switch size='large' value={globalState.showBreadcrumbs} onChange={() => dispatch(toggleShowBreadcrumbs())} />
-        </Col>
-      </Row>
-
-      <Row justify='space-between'>
-        <Col>
-          <div className={Style.settingSubTitle}>显示 Footer</div>
-        </Col>
-        <Col>
-          <Switch size='large' value={globalState.showFooter} onChange={() => dispatch(toggleShowFooter())} />
         </Col>
       </Row>
     </div>
