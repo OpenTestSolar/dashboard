@@ -20,13 +20,16 @@ mock.onGet("/api/get-list").reply(200, {
     list: [
       {
         index: 1,
+        imageName: "tcr.tencent.cloud.com/party/taas/native/demo",
+        count: 5,
+        user: "pinhenzhang",
         status: 4,
         no: "BH0038",
         name: "沧州市办公用品采购项目",
         paymentType: 1,
         contractType: 2,
         amount: "170,000,000",
-        adminName: "顾娟"
+        adminName: ""
       }
     ]
   }

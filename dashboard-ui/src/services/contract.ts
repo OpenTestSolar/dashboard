@@ -1,6 +1,10 @@
 import request from 'utils/request';
 
 export interface IContract {
+  id: bigint;
+  imageName: string;
+  user: string;
+  count: bigint;
   adminName: string;
   amount: string;
   contractType: number;

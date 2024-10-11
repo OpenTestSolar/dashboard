@@ -31,16 +31,16 @@ const SearchForm: React.FC<SearchFormProps> = (props) => {
     <div className='list-common-table-query'>
       <Form ref={formRef} onSubmit={onSubmit} labelWidth={80} colon>
         <Row>
-          <Col flex='1'>
+          <Col flex='70%'>
             <Row>
-              <Col xs={6} sm={6} xl={10}>
+              <Col>
                 <FormItem label='镜像库名称' name='name'>
                   <Input placeholder='请输入镜像库名称' />
                 </FormItem>
               </Col>
             </Row>
           </Col>
-          <Col flex='160px'>
+          <Col flex='30%'>
             <Button theme='primary' type='submit' style={{ margin: '0px 20px' }}>
               查询
             </Button>

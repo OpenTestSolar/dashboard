@@ -1,5 +1,5 @@
 import React, { memo, useEffect, useState } from 'react';
-import { Button, Dialog, Row, Table } from 'tdesign-react';
+import { Button, Dialog, Row, Table, Tag } from 'tdesign-react';
 import { useAppDispatch, useAppSelector } from 'modules/store';
 import { clearPageState, getList, selectListSelect } from 'modules/list/select';
 import SearchForm from './components/SearchForm';
@@ -60,54 +60,32 @@ export const SelectTable = () => {
         data={contractList}
         columns={[
           {
-            title: '合同名称',
+            title: '镜像库地址',
             fixed: 'left',
             align: 'left',
             ellipsis: true,
-            colKey: 'name',
+            colKey: 'imageName',
           },
           {
-            title: '合同状态',
-            colKey: 'status',
-            width: 200,
-            cell({ row }) {
-              return StatusMap[row.status || 5];
-            },
+            title: '用户',
+            colKey: 'user',
+            width: 140,
           },
           {
-            title: '合同编号',
-            width: 200,
+            title: '个数',
+            width: 140,
             ellipsis: true,
-            colKey: 'no',
-          },
-          {
-            title: '合同类型',
-            width: 200,
-            ellipsis: true,
-            colKey: 'contractType',
-            cell({ row }) {
-              return ContractTypeMap[row.contractType];
-            },
-          },
-          {
-            title: '合同收付类型',
-            width: 200,
-            ellipsis: true,
-            colKey: 'paymentType',
-            cell({ row }) {
-              return PaymentTypeMap[row.paymentType];
-            },
-          },
-          {
-            title: '合同金额 (元)',
-            width: 200,
-            ellipsis: true,
-            colKey: 'amount',
+            colKey: 'count',
+            cell({row}) {
+              return <Tag theme='success' variant='light'>
+                {row.count.toString()}
+              </Tag>
+            }
           },
           {
             align: 'left',
             fixed: 'right',
-            width: 200,
+            width: 120,
             colKey: 'op',
             title: '操作',
             cell(record) {
@@ -120,16 +98,7 @@ export const SelectTable = () => {
                       rehandleClickOp(record);
                     }}
                   >
-                    管理
-                  </Button>
-                  <Button
-                    theme='primary'
-                    variant='text'
-                    onClick={() => {
-                      handleClickDelete(record);
-                    }}
-                  >
-                    删除
+                    编辑
                   </Button>
                 </>
               );
