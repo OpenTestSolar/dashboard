@@ -1,6 +1,6 @@
 import axios from 'axios';
 import proxy from '../configs/host';
-
+import MockAdapter from 'axios-mock-adapter';
 const env = import.meta.env.MODE || 'development';
 const API_HOST = proxy[env].API;
 
@@ -12,6 +12,25 @@ export const instance = axios.create({
   timeout: TIMEOUT,
   withCredentials: true,
 });
+
+const mock = new MockAdapter(instance)
+mock.onGet("/api/get-list").reply(200, {
+  code: 0,
+  data: {
+    list: [
+      {
+        index: 1,
+        status: 4,
+        no: "BH0038",
+        name: "沧州市办公用品采购项目",
+        paymentType: 1,
+        contractType: 2,
+        amount: "170,000,000",
+        adminName: "顾娟"
+      }
+    ]
+  }
+})
 
 instance.interceptors.response.use(
   // eslint-disable-next-line consistent-return
