@@ -1,6 +1,6 @@
 import request from 'utils/request';
 
-export interface IContract {
+export interface ITestImage {
   id: bigint;
   imageName: string;
   user: string;
@@ -8,7 +8,7 @@ export interface IContract {
 }
 
 interface IResult {
-  list: IContract[];
+  list: ITestImage[];
 }
 
 interface IParams {

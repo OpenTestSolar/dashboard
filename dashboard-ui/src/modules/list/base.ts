@@ -1,6 +1,6 @@
 import { createSlice, createAsyncThunk } from '@reduxjs/toolkit';
 import { RootState } from '../store';
-import { getContractList, IContract } from 'services/contract';
+import { getContractList, ITestImage } from 'services/testImage';
 
 const namespace = 'list/base';
 
@@ -9,7 +9,7 @@ interface IInitialState {
   current: number;
   pageSize: number;
   total: number;
-  contractList: IContract[];
+  contractList: ITestImage[];
 }
 
 const initialState: IInitialState = {
