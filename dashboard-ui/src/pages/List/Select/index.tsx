@@ -1,9 +1,8 @@
 import React, { memo, useEffect, useState } from 'react';
-import { Button, Dialog, Row, Table, Tag } from 'tdesign-react';
+import { Button, Row, Table, Tag } from 'tdesign-react';
 import { useAppDispatch, useAppSelector } from 'modules/store';
 import { clearPageState, getList, selectListSelect } from 'modules/list/select';
 import SearchForm from './components/SearchForm';
-import { ContractTypeMap, PaymentTypeMap, StatusMap } from '../Base';
 
 import './index.module.less';
 import classnames from 'classnames';
@@ -34,15 +33,6 @@ export const SelectTable = () => {
 
   function rehandleClickOp(record: any) {
     console.log(record);
-  }
-
-  function handleClickDelete(record: any) {
-    console.log(record);
-    setVisible(true);
-  }
-
-  function handleClose() {
-    setVisible(false);
   }
 
   return (
@@ -76,11 +66,13 @@ export const SelectTable = () => {
             width: 140,
             ellipsis: true,
             colKey: 'count',
-            cell({row}) {
-              return <Tag theme='success' variant='light'>
-                {row.count.toString()}
-              </Tag>
-            }
+            cell({ row }) {
+              return (
+                <Tag theme='success' variant='light'>
+                  {row.count.toString()}
+                </Tag>
+              );
+            },
           },
           {
             align: 'left',
@@ -132,9 +124,6 @@ export const SelectTable = () => {
           },
         }}
       />
-      <Dialog header='确认删除当前所选合同？' visible={visible} onClose={handleClose}>
-        <p>删除后的所有合同信息将被清空,且无法恢复</p>
-      </Dialog>
     </>
   );
 };

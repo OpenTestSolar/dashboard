@@ -5,15 +5,6 @@ export interface IContract {
   imageName: string;
   user: string;
   count: bigint;
-  adminName: string;
-  amount: string;
-  contractType: number;
-  index: number;
-  name: string;
-  no: string;
-  paymentType: 1 | 2;
-  status: number;
-  updateTime: string;
 }
 
 interface IResult {
