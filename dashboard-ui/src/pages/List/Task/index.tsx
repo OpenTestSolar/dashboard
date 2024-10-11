@@ -1,5 +1,5 @@
 import React, { memo, useEffect, useState } from 'react';
-import { Button, Row, Table, Tag } from 'tdesign-react';
+import { Button, Row, Table, Tag, Tooltip } from 'tdesign-react';
 import { useAppDispatch, useAppSelector } from 'modules/store';
 import { clearPageState, getList, selectListSelect } from 'modules/list/select';
 import SearchForm from './components/SearchForm';
@@ -7,7 +7,7 @@ import SearchForm from './components/SearchForm';
 import './index.module.less';
 import classnames from 'classnames';
 import CommonStyle from '../../../styles/common.module.less';
-import { AddIcon } from 'tdesign-icons-react';
+import { Edit1Icon, HistoryIcon, PlayCircleStrokeIcon } from 'tdesign-icons-react';
 
 export const SelectTable = () => {
   const dispatch = useAppDispatch();
@@ -45,55 +45,70 @@ export const SelectTable = () => {
           }}
           onCancel={() => {}}
         />
-        <Button icon={<AddIcon />}>创建镜像库</Button>
       </Row>
       <Table
         loading={loading}
         data={contractList}
         columns={[
           {
-            title: '镜像库地址',
+            title: '任务ID',
             fixed: 'left',
             align: 'left',
             ellipsis: true,
             colKey: 'imageName',
           },
           {
-            title: '用户',
+            title: '任务名称',
             colKey: 'user',
             width: 140,
           },
           {
-            title: '个数',
+            title: '创建人',
+            colKey: 'creator',
             width: 140,
-            ellipsis: true,
-            colKey: 'count',
-            cell({ row }) {
-              return (
-                <Tag theme='success' variant='light'>
-                  {row.count.toString()}
-                </Tag>
-              );
-            },
+          },
+          {
+            title: '最近修改时间',
+            colKey: 'modifyTime',
+            width: 140,
           },
           {
             align: 'left',
             fixed: 'right',
-            width: 120,
+            width: 160,
             colKey: 'op',
             title: '操作',
             cell(record) {
               return (
                 <>
-                  <Button
-                    theme='primary'
-                    variant='text'
-                    onClick={() => {
-                      rehandleClickOp(record);
-                    }}
-                  >
-                    编辑
-                  </Button>
+                  <Tooltip content='启动'>
+                    <Button
+                      shape='circle'
+                      icon={<PlayCircleStrokeIcon />}
+                      onClick={() => {
+                        rehandleClickOp(record);
+                      }}
+                    ></Button>
+                  </Tooltip>
+
+                  <Tooltip content='执行记录'>
+                    <Button
+                      shape='circle'
+                      icon={<HistoryIcon />}
+                      onClick={() => {
+                        rehandleClickOp(record);
+                      }}
+                    ></Button>
+                  </Tooltip>
+                  <Tooltip content="编辑">
+                    <Button
+                      shape='circle'
+                      icon={<Edit1Icon />}
+                      onClick={() => {
+                        rehandleClickOp(record);
+                      }}
+                    ></Button>
+                  </Tooltip>
                 </>
               );
             },

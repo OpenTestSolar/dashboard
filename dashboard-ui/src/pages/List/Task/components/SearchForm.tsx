@@ -36,7 +36,7 @@ const SearchForm: React.FC<SearchFormProps> = (props) => {
             <Row>
               <Col>
                 <FormItem name='name'>
-                  <Input placeholder='请输入镜像库名称' />
+                  <Input placeholder='请输入任务名称' />
                 </FormItem>
               </Col>
             </Row>

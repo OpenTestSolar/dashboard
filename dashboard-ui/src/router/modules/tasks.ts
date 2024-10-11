@@ -9,7 +9,7 @@ const result: IRouter[] = [
       title: '测试任务',
       Icon: QueueIcon,
     },
-    Component: lazy(() => import('pages/List/Base')),
+    Component: lazy(() => import('pages/List/Task')),
   },
 ];
 
