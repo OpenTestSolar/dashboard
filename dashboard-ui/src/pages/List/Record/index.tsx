@@ -1,5 +1,5 @@
 import React, { memo, useEffect, useState } from 'react';
-import { Button, Progress, Row, StatusEnum, Table, Tag, Tooltip } from 'tdesign-react';
+import { Button, Progress, Row, Select, StatusEnum, Table, Tag, Tooltip } from 'tdesign-react';
 import { useAppDispatch, useAppSelector } from 'modules/store';
 import { clearPageState, getList, selectTestRecordList } from 'modules/list/testRecord';
 import prettyMilliseconds from 'pretty-ms';
@@ -34,6 +34,13 @@ export const StatusMap: {
   ),
 };
 
+const statusOptions = [
+  { label: '已完成', value: 'success' },
+  { label: '错误', value: 'error' },
+  { label: '执行中', value: 'running' },
+  { label: '已取消', value: 'cancel' },
+];
+
 export const SelectTable = () => {
   const dispatch = useAppDispatch();
   const pageState = useAppSelector(selectTestRecordList);
@@ -63,9 +70,7 @@ export const SelectTable = () => {
 
   return (
     <>
-      <Row justify='start' style={{ marginBottom: '20px' }}>
-        <Button icon={<AddIcon />}>创建测试任务</Button>
-      </Row>
+      <Select multiple label='状态' autoWidth={true} options={statusOptions}></Select>
       <Table
         loading={loading}
         data={testRecordList}
@@ -89,9 +94,11 @@ export const SelectTable = () => {
             width: 140,
             cell({ row }) {
               // 返回一个超链接文本
-              return <a href={`pages/List/Task/${row.triggerFrom.id}`} target="_blank" rel="noopener noreferrer">{row.triggerFrom.taskName}
-
-              </a>;
+              return (
+                <a href={`pages/List/Task/${row.triggerFrom.id}`} target='_blank' rel='noopener noreferrer'>
+                  {row.triggerFrom.taskName}
+                </a>
+              );
             },
           },
           {
