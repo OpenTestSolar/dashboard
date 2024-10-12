@@ -72,7 +72,7 @@ export const SelectTable = () => {
         columns={[
           {
             title: 'ID',
-            width: 120,
+            width: 100,
             ellipsis: true,
             colKey: 'id',
           },
@@ -86,7 +86,13 @@ export const SelectTable = () => {
           {
             title: '启动方',
             colKey: 'creator',
-            width: 120,
+            width: 140,
+            cell({ row }) {
+              // 返回一个超链接文本
+              return <a href={`pages/List/Task/${row.triggerFrom.id}`} target="_blank" rel="noopener noreferrer">{row.triggerFrom.taskName}
+
+              </a>;
+            },
           },
           {
             title: '状态',
@@ -114,18 +120,18 @@ export const SelectTable = () => {
             colKey: 'passRate',
             width: 120,
             cell({ row }) {
-              let finalStatus: StatusEnum = "active"
-              if (["success", "running"].includes(row.status)) {
-                finalStatus = "success"
+              let finalStatus: StatusEnum = 'active';
+              if (['success', 'running'].includes(row.status)) {
+                finalStatus = 'success';
               } else if (row.status === 'cancel') {
-                finalStatus = "warning"
+                finalStatus = 'warning';
               } else if (row.status === 'error') {
-                finalStatus = "error"
+                finalStatus = 'error';
               }
 
               return (
                 <>
-                  <Progress label percentage={row.passRate*100} status={finalStatus} color=""></Progress>
+                  <Progress label percentage={row.passRate * 100} status={finalStatus} color=''></Progress>
                 </>
               );
             },

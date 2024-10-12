@@ -87,7 +87,7 @@ mock.onGet('/api/get-test-records').reply(200, {
         taskName: 'NAT测试(IPv6-广州)',
         triggerFrom: {
           id: 12,
-          taskName: 'Dashboard测试',
+          taskName: 'NAT测试',
         },
         status: "running",
         startTime: '2024-09-19 15:22:34',
@@ -99,7 +99,7 @@ mock.onGet('/api/get-test-records').reply(200, {
         taskName: 'AI评估测试-(OpenAI/混元/千问/Claude/Gemini)',
         triggerFrom: {
           id: 12,
-          taskName: 'Dashboard测试',
+          taskName: 'AI评估',
         },
         status: "success",
         startTime: '2024-09-19 15:22:34',
@@ -111,7 +111,7 @@ mock.onGet('/api/get-test-records').reply(200, {
         taskName: 'AI评估测试-(OpenAI/混元/千问/Claude/Gemini)',
         triggerFrom: {
           id: 12,
-          taskName: 'Dashboard测试',
+          taskName: 'AI评估',
         },
         status: "error",
         startTime: '2024-09-19 15:22:34',
@@ -123,7 +123,7 @@ mock.onGet('/api/get-test-records').reply(200, {
         taskName: 'AI评估测试-(OpenAI/混元/千问/Claude/Gemini)',
         triggerFrom: {
           id: 12,
-          taskName: 'Dashboard测试',
+          taskName: 'AI评估',
         },
         status: "cancel",
         startTime: '2024-09-19 15:22:34',
