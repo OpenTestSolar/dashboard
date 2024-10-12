@@ -1,6 +1,7 @@
 import axios from 'axios';
 import proxy from '../configs/host';
 import MockAdapter from 'axios-mock-adapter';
+
 const env = import.meta.env.MODE || 'development';
 const API_HOST = proxy[env].API;
 
@@ -13,59 +14,103 @@ export const instance = axios.create({
   withCredentials: true,
 });
 
-const mock = new MockAdapter(instance)
-mock.onGet("/api/get-test-images").reply(200, {
+const mock = new MockAdapter(instance);
+mock.onGet('/api/get-test-images').reply(200, {
   code: 0,
   data: {
     list: [
       {
         index: 1,
-        imageName: "tcr.tencent.cloud.com/party/taas/native/demo",
+        imageName: 'tcr.tencent.cloud.com/party/taas/native/demo',
         count: 5,
-        user: "pinhenzhang",
+        user: 'pinhenzhang',
       },
       {
         index: 2,
-        imageName: "tcr.tencent.cloud.com/party/taas/fastly",
+        imageName: 'tcr.tencent.cloud.com/party/taas/fastly',
         count: 2,
-        user: "zixindeng",
+        user: 'zixindeng',
       },
       {
         index: 3,
-        imageName: "tcr.tencent.cloud.com/party/taas/pytest",
+        imageName: 'tcr.tencent.cloud.com/party/taas/pytest',
         count: 7,
-        user: "marklei",
-      }
-    ]
-  }
-})
-mock.onGet("/api/get-test-tasks").reply(200, {
+        user: 'marklei',
+      },
+    ],
+  },
+});
+mock.onGet('/api/get-test-tasks').reply(200, {
   code: 0,
   data: {
     list: [
       {
         id: 1277648,
-        taskName: "TestSolar Dashboard E2E 自动化测试（定时验收）",
-        creator: "pinhenzhang",
-        modifyTime: "2024-09-19 15:22:34",
+        taskName: 'TestSolar Dashboard E2E 自动化测试（定时验收）',
+        creator: 'pinhenzhang',
+        modifyTime: '2024-09-19 15:22:34',
       },
       {
         id: 2095352,
-        taskName: "NAT测试(IPv6-广州)",
-        imageName: "tcr.tencent.cloud.com/party/taas/fastly",
-        creator: "zixindeng",
-        modifyTime: "2024-09-23 11:05:22",
+        taskName: 'NAT测试(IPv6-广州)',
+        imageName: 'tcr.tencent.cloud.com/party/taas/fastly',
+        creator: 'zixindeng',
+        modifyTime: '2024-09-23 11:05:22',
       },
       {
         id: 666666666,
-        taskName: "AI评估测试-(OpenAI/混元/千问/Claude/Gemini)",
-        creator: "pinhenzhang",
-        modifyTime: "2024-09-19 15:22:34",
-      }
-    ]
-  }
-})
-
+        taskName: 'AI评估测试-(OpenAI/混元/千问/Claude/Gemini)',
+        creator: 'pinhenzhang',
+        modifyTime: '2024-09-19 15:22:34',
+      },
+    ],
+  },
+});
+mock.onGet('/api/get-test-records').reply(200, {
+  code: 0,
+  data: {
+    list: [
+      {
+        id: 1277393,
+        taskName: 'TestSolar Dashboard E2E 自动化测试（定时验收）',
+        triggerFrom: {
+          id: 12,
+          taskName: 'Dashboard测试',
+        },
+        status: "success",
+        creator: 'pinhenzhang',
+        startTime: '2024-09-19 15:22:34',
+        elapse: 12331,
+        passRate: 0.72,
+      },
+      {
+        id: 1277394,
+        taskName: 'NAT测试(IPv6-广州)',
+        imageName: 'tcr.tencent.cloud.com/party/taas/fastly',
+        creator: 'zixindeng',
+        modifyTime: '2024-09-23 11:05:22',
+      },
+      {
+        id: 1277395,
+        taskName: 'AI评估测试-(OpenAI/混元/千问/Claude/Gemini)',
+        creator: 'pinhenzhang',
+        modifyTime: '2024-09-19 15:22:34',
+      },
+      {
+        id: 1277396,
+        taskName: 'AI评估测试-(OpenAI/混元/千问/Claude/Gemini)',
+        creator: 'pinhenzhang',
+        modifyTime: '2024-09-19 15:22:34',
+      },
+      {
+        id: 1277397,
+        taskName: 'AI评估测试-(OpenAI/混元/千问/Claude/Gemini)',
+        creator: 'pinhenzhang',
+        modifyTime: '2024-09-19 15:22:34',
+      },
+    ],
+  },
+});
 
 instance.interceptors.response.use(
   // eslint-disable-next-line consistent-return

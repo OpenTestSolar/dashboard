@@ -1,5 +1,5 @@
 import { lazy } from 'react';
-import { QueueIcon } from 'tdesign-icons-react';
+import { HistoryIcon } from 'tdesign-icons-react';
 import { IRouter } from '../index';
 
 const result: IRouter[] = [
@@ -7,9 +7,9 @@ const result: IRouter[] = [
     path: '/records',
     meta: {
       title: '执行记录',
-      Icon: QueueIcon,
+      Icon: HistoryIcon,
     },
-    Component: lazy(() => import('pages/List/Base')),
+    Component: lazy(() => import('pages/List/Record')),
   },
 ];
 
