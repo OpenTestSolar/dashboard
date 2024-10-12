@@ -14,7 +14,7 @@ export const SelectTable = () => {
   const pageState = useAppSelector(selectListSelect);
   const [selectedRowKeys, setSelectedRowKeys] = useState<(string | number)[]>([0, 1]);
   const [visible, setVisible] = useState(false);
-  const { loading, contractList, current, pageSize, total } = pageState;
+  const { loading, testImageList, current, pageSize, total } = pageState;
 
   useEffect(() => {
     dispatch(
@@ -49,7 +49,7 @@ export const SelectTable = () => {
       </Row>
       <Table
         loading={loading}
-        data={contractList}
+        data={testImageList}
         columns={[
           {
             title: '镜像库地址',

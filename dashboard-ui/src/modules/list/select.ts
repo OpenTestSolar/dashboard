@@ -9,7 +9,7 @@ interface IInitialState {
   current: number;
   pageSize: number;
   total: number;
-  contractList: ITestImage[];
+  testImageList: ITestImage[];
 }
 
 const initialState: IInitialState = {
@@ -17,7 +17,7 @@ const initialState: IInitialState = {
   current: 1,
   pageSize: 10,
   total: 0,
-  contractList: [],
+  testImageList: [],
 };
 
 export const getList = createAsyncThunk(
@@ -46,7 +46,7 @@ const listSelectSlice = createSlice({
       })
       .addCase(getList.fulfilled, (state, action) => {
         state.loading = false;
-        state.contractList = action.payload?.list;
+        state.testImageList = action.payload?.list;
         state.total = action.payload?.total;
         state.pageSize = action.payload?.pageSize;
         state.current = action.payload?.current;
