@@ -1,20 +1,20 @@
 import React, { memo, useEffect, useState } from 'react';
 import { Button, Row, Table, Tag, Tooltip } from 'tdesign-react';
 import { useAppDispatch, useAppSelector } from 'modules/store';
-import { clearPageState, getList, selectTestImageList } from 'modules/list/testImage';
+import { clearPageState, getList, selectTestTaskList } from 'modules/list/testTask';
 import SearchForm from './components/SearchForm';
 
 import './index.module.less';
 import classnames from 'classnames';
 import CommonStyle from '../../../styles/common.module.less';
-import { Edit1Icon, HistoryIcon, PlayCircleStrokeIcon } from 'tdesign-icons-react';
+import { AddIcon, Edit1Icon, HistoryIcon, PlayCircleStrokeIcon } from 'tdesign-icons-react';
 
 export const SelectTable = () => {
   const dispatch = useAppDispatch();
-  const pageState = useAppSelector(selectTestImageList);
+  const pageState = useAppSelector(selectTestTaskList);
   const [selectedRowKeys, setSelectedRowKeys] = useState<(string | number)[]>([0, 1]);
   const [visible, setVisible] = useState(false);
-  const { loading, testImageList, current, pageSize, total } = pageState;
+  const { loading, testTaskList, current, pageSize, total } = pageState;
 
   useEffect(() => {
     dispatch(
@@ -45,22 +45,26 @@ export const SelectTable = () => {
           }}
           onCancel={() => {}}
         />
+        <Button icon={<AddIcon />}>创建测试任务</Button>
       </Row>
       <Table
         loading={loading}
-        data={testImageList}
+        data={testTaskList}
         columns={[
           {
             title: '任务ID',
+            width: 120,
             fixed: 'left',
             align: 'left',
             ellipsis: true,
-            colKey: 'imageName',
+            colKey: 'id',
           },
           {
             title: '任务名称',
-            colKey: 'user',
-            width: 140,
+            colKey: 'taskName',
+            fixed: 'left',
+            align: 'left',
+            ellipsis: true,
           },
           {
             title: '创建人',

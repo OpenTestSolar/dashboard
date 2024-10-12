@@ -39,6 +39,33 @@ mock.onGet("/api/get-test-images").reply(200, {
     ]
   }
 })
+mock.onGet("/api/get-test-tasks").reply(200, {
+  code: 0,
+  data: {
+    list: [
+      {
+        id: 1277648,
+        taskName: "TestSolar Dashboard E2E 自动化测试（定时验收）",
+        creator: "pinhenzhang",
+        modifyTime: "2024-09-19 15:22:34",
+      },
+      {
+        id: 2095352,
+        taskName: "NAT测试(IPv6-广州)",
+        imageName: "tcr.tencent.cloud.com/party/taas/fastly",
+        creator: "zixindeng",
+        modifyTime: "2024-09-23 11:05:22",
+      },
+      {
+        id: 666666666,
+        taskName: "AI评估测试-(OpenAI/混元/千问/Claude/Gemini)",
+        creator: "pinhenzhang",
+        modifyTime: "2024-09-19 15:22:34",
+      }
+    ]
+  }
+})
+
 
 instance.interceptors.response.use(
   // eslint-disable-next-line consistent-return
