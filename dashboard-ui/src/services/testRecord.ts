@@ -11,7 +11,7 @@ export interface ITestRecord {
   triggerFrom: ITestTask;
   status: string;
   startTime: Date;
-  elapsed: bigint;
+  elapse: number;
   passRate: number;
   caseCount: bigint;
 }

@@ -4,6 +4,7 @@
 		"react-redux": "^9.1.2"
 	},
 	"dependencies": {
-		"axios-mock-adapter": "^2.1.0"
+		"axios-mock-adapter": "^2.1.0",
+		"pretty-ms": "^9.1.0"
 	}
 }

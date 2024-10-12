@@ -1,12 +1,38 @@
 import React, { memo, useEffect, useState } from 'react';
-import { Button, Row, Table, Tooltip } from 'tdesign-react';
+import { Button, Row, Table, Tag, Tooltip } from 'tdesign-react';
 import { useAppDispatch, useAppSelector } from 'modules/store';
 import { clearPageState, getList, selectTestRecordList } from 'modules/list/testRecord';
+import prettyMilliseconds from 'pretty-ms';
 
 import './index.module.less';
 import classnames from 'classnames';
 import CommonStyle from '../../../styles/common.module.less';
 import { AddIcon, FilePasteIcon } from 'tdesign-icons-react';
+
+export const StatusMap: {
+  [key: string]: React.ReactElement;
+} = {
+  "success": (
+    <Tag theme='success' variant='light'>
+      已完成
+    </Tag>
+  ),
+  "error": (
+    <Tag theme='danger' variant='light'>
+      错误
+    </Tag>
+  ),
+  "running": (
+    <Tag theme='primary' variant='light'>
+      执行中
+    </Tag>
+  ),
+  "cancel": (
+    <Tag theme='default' variant='light'>
+      已取消
+    </Tag>
+  ),
+};
 
 export const SelectTable = () => {
   const dispatch = useAppDispatch();
@@ -66,6 +92,9 @@ export const SelectTable = () => {
             title: '状态',
             colKey: 'status',
             width: 120,
+            cell({row}) {
+              return StatusMap[row.status]
+            }
           },
           {
             title: '启动时间',
@@ -76,6 +105,9 @@ export const SelectTable = () => {
             title: '耗时',
             colKey: 'elapse',
             width: 120,
+            cell({row}) {
+              return prettyMilliseconds(row.elapse * 1000);
+            }
           },
           {
             title: '通过率',
