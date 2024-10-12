@@ -125,7 +125,7 @@ mock.onGet('/api/get-test-records').reply(200, {
           id: 12,
           taskName: 'Dashboard测试',
         },
-        status: "success",
+        status: "cancel",
         startTime: '2024-09-19 15:22:34',
         elapse: 3286,
         passRate: 0.72,

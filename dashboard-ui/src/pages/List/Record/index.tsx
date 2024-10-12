@@ -1,5 +1,5 @@
 import React, { memo, useEffect, useState } from 'react';
-import { Button, Row, Table, Tag, Tooltip } from 'tdesign-react';
+import { Button, Progress, Row, StatusEnum, Table, Tag, Tooltip } from 'tdesign-react';
 import { useAppDispatch, useAppSelector } from 'modules/store';
 import { clearPageState, getList, selectTestRecordList } from 'modules/list/testRecord';
 import prettyMilliseconds from 'pretty-ms';
@@ -12,22 +12,22 @@ import { AddIcon, FilePasteIcon } from 'tdesign-icons-react';
 export const StatusMap: {
   [key: string]: React.ReactElement;
 } = {
-  "success": (
+  success: (
     <Tag theme='success' variant='light'>
       已完成
     </Tag>
   ),
-  "error": (
+  error: (
     <Tag theme='danger' variant='light'>
       错误
     </Tag>
   ),
-  "running": (
+  running: (
     <Tag theme='primary' variant='light'>
       执行中
     </Tag>
   ),
-  "cancel": (
+  cancel: (
     <Tag theme='default' variant='light'>
       已取消
     </Tag>
@@ -92,9 +92,9 @@ export const SelectTable = () => {
             title: '状态',
             colKey: 'status',
             width: 120,
-            cell({row}) {
-              return StatusMap[row.status]
-            }
+            cell({ row }) {
+              return StatusMap[row.status];
+            },
           },
           {
             title: '启动时间',
@@ -105,14 +105,30 @@ export const SelectTable = () => {
             title: '耗时',
             colKey: 'elapse',
             width: 120,
-            cell({row}) {
+            cell({ row }) {
               return prettyMilliseconds(row.elapse * 1000);
-            }
+            },
           },
           {
             title: '通过率',
             colKey: 'passRate',
             width: 120,
+            cell({ row }) {
+              let finalStatus: StatusEnum = "active"
+              if (["success", "running"].includes(row.status)) {
+                finalStatus = "success"
+              } else if (row.status === 'cancel') {
+                finalStatus = "warning"
+              } else if (row.status === 'error') {
+                finalStatus = "error"
+              }
+
+              return (
+                <>
+                  <Progress label percentage={row.passRate*100} status={finalStatus} color=""></Progress>
+                </>
+              );
+            },
           },
           {
             align: 'left',
