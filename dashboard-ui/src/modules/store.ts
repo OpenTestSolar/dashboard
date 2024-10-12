@@ -3,12 +3,15 @@ import { TypedUseSelectorHook, useSelector, useDispatch } from 'react-redux';
 
 import global from './global';
 import user from './user';
-import listSelect from './list/testImage';
+import listTestImage from './list/testImage';
+import listTestTask from './list/testTask';
+
 
 const reducer = combineReducers({
   global,
   user,
-  listSelect,
+  listSelect: listTestImage,
+  listTask: listTestTask,
 });
 
 export const store = configureStore({
