@@ -74,7 +74,7 @@ export const SelectTable = () => {
           {
             title: '最近修改时间',
             colKey: 'modifyTime',
-            width: 140,
+            width: 200,
           },
           {
             align: 'left',
