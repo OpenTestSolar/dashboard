@@ -16,8 +16,8 @@ interface IParams {
   current: number;
 }
 
-export const getContractList = async (params: IParams) => {
-  const result = await request.get<IResult>('/api/get-list');
+export const getTestImageList = async (params: IParams) => {
+  const result = await request.get<IResult>('/api/get-test-images');
 
   // 模拟接口分页
   let list = result?.data?.list || [];

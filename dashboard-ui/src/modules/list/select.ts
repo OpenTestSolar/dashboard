@@ -1,8 +1,8 @@
 import { createSlice, createAsyncThunk } from '@reduxjs/toolkit';
 import { RootState } from '../store';
-import { getContractList, ITestImage } from 'services/testImage';
+import { getTestImageList, ITestImage } from 'services/testImage';
 
-const namespace = 'list/select';
+const namespace = 'list/image';
 
 interface IInitialState {
   loading: boolean;
@@ -21,9 +21,9 @@ const initialState: IInitialState = {
 };
 
 export const getList = createAsyncThunk(
-  `${namespace}/getSelectList`,
+  `${namespace}/getTestImageList`,
   async (params: { pageSize: number; current: number }) => {
-    const result = await getContractList(params);
+    const result = await getTestImageList(params);
     return {
       list: result?.list,
       total: result?.total,
@@ -59,6 +59,6 @@ const listSelectSlice = createSlice({
 
 export const { clearPageState } = listSelectSlice.actions;
 
-export const selectListSelect = (state: RootState) => state.listSelect;
+export const selectTestImageList = (state: RootState) => state.listSelect;
 
 export default listSelectSlice.reducer;

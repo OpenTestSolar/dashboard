@@ -14,7 +14,7 @@ export const instance = axios.create({
 });
 
 const mock = new MockAdapter(instance)
-mock.onGet("/api/get-list").reply(200, {
+mock.onGet("/api/get-test-images").reply(200, {
   code: 0,
   data: {
     list: [

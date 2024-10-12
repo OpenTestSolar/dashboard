@@ -1,7 +1,7 @@
 import React, { memo, useEffect, useState } from 'react';
 import { Button, Row, Table, Tag } from 'tdesign-react';
 import { useAppDispatch, useAppSelector } from 'modules/store';
-import { clearPageState, getList, selectListSelect } from 'modules/list/select';
+import { clearPageState, getList, selectTestImageList } from 'modules/list/select';
 import SearchForm from './components/SearchForm';
 
 import './index.module.less';
@@ -11,7 +11,7 @@ import { AddIcon } from 'tdesign-icons-react';
 
 export const SelectTable = () => {
   const dispatch = useAppDispatch();
-  const pageState = useAppSelector(selectListSelect);
+  const pageState = useAppSelector(selectTestImageList);
   const [selectedRowKeys, setSelectedRowKeys] = useState<(string | number)[]>([0, 1]);
   const [visible, setVisible] = useState(false);
   const { loading, testImageList, current, pageSize, total } = pageState;
@@ -130,10 +130,10 @@ export const SelectTable = () => {
   );
 };
 
-const selectPage: React.FC = () => (
+const testImagePage: React.FC = () => (
   <div className={classnames(CommonStyle.pageWithPadding, CommonStyle.pageWithColor)}>
     <SelectTable />
   </div>
 );
 
-export default memo(selectPage);
+export default memo(testImagePage);

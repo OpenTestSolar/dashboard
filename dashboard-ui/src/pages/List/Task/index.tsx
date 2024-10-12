@@ -1,7 +1,7 @@
 import React, { memo, useEffect, useState } from 'react';
 import { Button, Row, Table, Tag, Tooltip } from 'tdesign-react';
 import { useAppDispatch, useAppSelector } from 'modules/store';
-import { clearPageState, getList, selectListSelect } from 'modules/list/select';
+import { clearPageState, getList, selectTestImageList } from 'modules/list/select';
 import SearchForm from './components/SearchForm';
 
 import './index.module.less';
@@ -11,7 +11,7 @@ import { Edit1Icon, HistoryIcon, PlayCircleStrokeIcon } from 'tdesign-icons-reac
 
 export const SelectTable = () => {
   const dispatch = useAppDispatch();
-  const pageState = useAppSelector(selectListSelect);
+  const pageState = useAppSelector(selectTestImageList);
   const [selectedRowKeys, setSelectedRowKeys] = useState<(string | number)[]>([0, 1]);
   const [visible, setVisible] = useState(false);
   const { loading, testImageList, current, pageSize, total } = pageState;
