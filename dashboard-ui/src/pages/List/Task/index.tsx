@@ -1,7 +1,7 @@
 import React, { memo, useEffect, useState } from 'react';
 import { Button, Row, Table, Tag, Tooltip } from 'tdesign-react';
 import { useAppDispatch, useAppSelector } from 'modules/store';
-import { clearPageState, getList, selectTestImageList } from 'modules/list/select';
+import { clearPageState, getList, selectTestImageList } from 'modules/list/testImage';
 import SearchForm from './components/SearchForm';
 
 import './index.module.less';

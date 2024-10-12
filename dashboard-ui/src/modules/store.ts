@@ -3,7 +3,7 @@ import { TypedUseSelectorHook, useSelector, useDispatch } from 'react-redux';
 
 import global from './global';
 import user from './user';
-import listSelect from './list/select';
+import listSelect from './list/testImage';
 
 const reducer = combineReducers({
   global,
