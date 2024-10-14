@@ -1,20 +1,22 @@
-import React, { memo, useEffect, useState } from 'react';
-import { Button, Row, Table, Tag, Tooltip } from 'tdesign-react';
-import { useAppDispatch, useAppSelector } from 'modules/store';
-import { clearPageState, getList, selectTestTaskList } from 'modules/list/testTask';
+import React, {memo, useEffect, useState} from 'react';
+import {Button, Row, Table, Tag, Tooltip} from 'tdesign-react';
+import {useAppDispatch, useAppSelector} from 'modules/store';
+import {clearPageState, getList, selectTestTaskList} from 'modules/list/testTask';
 import SearchForm from './components/SearchForm';
 
 import './index.module.less';
 import classnames from 'classnames';
 import CommonStyle from '../../../styles/common.module.less';
-import { AddIcon, Edit1Icon, HistoryIcon, PlayCircleStrokeIcon } from 'tdesign-icons-react';
+import {AddIcon, Edit1Icon, HistoryIcon, PlayCircleStrokeIcon} from 'tdesign-icons-react';
+import {useNavigate} from "react-router-dom";
 
 export const SelectTable = () => {
+  const navigate = useNavigate();
   const dispatch = useAppDispatch();
   const pageState = useAppSelector(selectTestTaskList);
   const [selectedRowKeys, setSelectedRowKeys] = useState<(string | number)[]>([0, 1]);
   const [visible, setVisible] = useState(false);
-  const { loading, testTaskList, current, pageSize, total } = pageState;
+  const {loading, testTaskList, current, pageSize, total} = pageState;
 
   useEffect(() => {
     dispatch(
@@ -38,14 +40,18 @@ export const SelectTable = () => {
 
   return (
     <>
-      <Row justify='start' style={{ marginBottom: '20px' }}>
+      <Row justify='start' style={{marginBottom: '20px'}}>
         <SearchForm
           onSubmit={async (value) => {
             console.log(value);
           }}
-          onCancel={() => {}}
+          onCancel={() => {
+          }}
         />
-        <Button icon={<AddIcon />}>创建测试任务</Button>
+        <Button icon={<AddIcon/>}
+                onClick={() => navigate("edit")}>
+          创建测试任务
+        </Button>
       </Row>
       <Table
         loading={loading}
@@ -88,7 +94,7 @@ export const SelectTable = () => {
                   <Tooltip content='启动'>
                     <Button
                       shape='circle'
-                      icon={<PlayCircleStrokeIcon />}
+                      icon={<PlayCircleStrokeIcon/>}
                       onClick={() => {
                         rehandleClickOp(record);
                       }}
@@ -98,7 +104,7 @@ export const SelectTable = () => {
                   <Tooltip content='执行记录'>
                     <Button
                       shape='circle'
-                      icon={<HistoryIcon />}
+                      icon={<HistoryIcon/>}
                       onClick={() => {
                         rehandleClickOp(record);
                       }}
@@ -107,7 +113,7 @@ export const SelectTable = () => {
                   <Tooltip content="编辑">
                     <Button
                       shape='circle'
-                      icon={<Edit1Icon />}
+                      icon={<Edit1Icon/>}
                       onClick={() => {
                         rehandleClickOp(record);
                       }}
@@ -151,7 +157,7 @@ export const SelectTable = () => {
 
 const selectPage: React.FC = () => (
   <div className={classnames(CommonStyle.pageWithPadding, CommonStyle.pageWithColor)}>
-    <SelectTable />
+    <SelectTable/>
   </div>
 );
 

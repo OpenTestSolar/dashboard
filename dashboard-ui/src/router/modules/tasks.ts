@@ -11,6 +11,10 @@ const result: IRouter[] = [
     },
     Component: lazy(() => import('pages/List/Task')),
   },
+  {
+    path: '/tasks/edit',
+    Component: lazy(() => import('pages/CreateTask')),
+  }
 ];
 
 export default result;
