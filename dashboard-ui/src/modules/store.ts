@@ -6,7 +6,7 @@ import user from './user';
 import listTestImage from './list/testImage';
 import listTestTask from './list/testTask';
 import listTestRecord from './list/testRecord';
-
+import listTools from './list/testTool';
 
 const reducer = combineReducers({
   global,
@@ -14,6 +14,7 @@ const reducer = combineReducers({
   listSelect: listTestImage,
   listTask: listTestTask,
   listRecord: listTestRecord,
+  listTools,
 });
 
 export const store = configureStore({

@@ -1,11 +1,13 @@
-import { memo, useState } from 'react';
-import { Input, Form, Select, InputNumber, InputNumberValue, SelectOption } from 'tdesign-react';
+import { memo, useEffect, useState } from 'react';
+import { Input, Form, Select, InputNumber, InputNumberValue, SelectOption, Button, Space } from 'tdesign-react';
 
 import './index.module.less';
 import classnames from 'classnames';
 import CommonStyle from '../../styles/common.module.less';
 import TooltipLabel from './components/TooltipLabel';
 import EnvEditor from './components/EnvEditor';
+import { useAppDispatch, useAppSelector } from 'modules/store';
+import { selectToolList, getToolList } from 'modules/list/testTool';
 
 const { FormItem } = Form;
 
@@ -14,15 +16,37 @@ export const NewTask = () => {
   const onChange = (value: SelectOption) => {
     setValue(value);
   };
+
+  // 并发设置
   const [concurrencyValue, setConcurrencyValue] = useState<InputNumberValue>(1);
   const onConcurrencyChange = (value: InputNumberValue) => {
     setConcurrencyValue(value);
   };
+
+  // 重试次数设置
   const [retryCountValue, setRetryCountValue] = useState<InputNumberValue>(1);
   const onRetryCountChange = (value: InputNumberValue) => {
     setRetryCountValue(value);
   };
 
+  // 工具下拉菜单
+  const dispatch = useAppDispatch();
+  const testToolState = useAppSelector(selectToolList);
+  const { loading, toolList } = testToolState;
+
+  useEffect(() => {
+    if (toolList.length == 0) {
+      dispatch(getToolList());
+    }
+  }, [dispatch, toolList.length]);
+
+  // 将 tools 数据转换为 Select 组件所需的格式
+  const options = toolList.map((tool) => ({
+    label: tool.nameZh,
+    value: tool.name,
+  }));
+
+  // 环境变量数据
   const [envDatas, setEnvDatas] = useState();
 
   return (
@@ -49,7 +73,7 @@ export const NewTask = () => {
           <Input placeholder='不输入默认执行全部用例' style={{ width: '600px' }} />
         </FormItem>
 
-        <FormItem label='执行集群' name='inputD'>
+        <FormItem label='执行集群' name='cluster'>
           <Select
             style={{ width: '360px' }}
             clearable
@@ -70,23 +94,18 @@ export const NewTask = () => {
         </FormItem>
 
         <FormItem label='测试工具' name='toolName'>
-          <Select
-            style={{ width: '120px' }}
-            clearable
-            options={[
-              { label: 'PyTest', value: 'pytest' },
-              { label: 'Ginkgo', value: 'ginkgo' },
-              { label: 'GoTest', value: 'gotest' },
-              { label: 'Jest', value: 'jest' },
-              { label: 'Playwright', value: 'playwright' },
-            ]}
-          />
+          <Select style={{ width: '200px' }} clearable loading={loading} options={options} />
         </FormItem>
 
         <FormItem label='环境变量' name='envs'>
           <EnvEditor />
         </FormItem>
       </Form>
+
+      <Space>
+        <Button theme='primary'>提交</Button>
+        <Button theme='default'>取消</Button>
+      </Space>
     </>
   );
 };
