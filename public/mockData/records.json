@@ -1,0 +1,67 @@
+{
+  "records": [
+    {
+      "id": 1277393,
+      "taskName": "TestSolar Dashboard E2E 自动化测试（定时验收）",
+      "triggerFrom": {
+        "id": 12,
+        "taskName": "Dashboard测试"
+      },
+      "status": "success",
+      "startTime": "2024-09-19 15:22:34",
+      "elapse": 12331,
+      "passRate": 0.72
+    },
+    {
+      "id": 1277394,
+      "taskName": "NAT测试(IPv6-广州)",
+      "triggerFrom": {
+        "id": 12,
+        "taskName": "NAT测试"
+      },
+      "status": "running",
+      "startTime": "2024-09-19 15:22:34",
+      "elapse": 345,
+      "passRate": 0.72
+    },
+    {
+      "id": 1277395,
+      "taskName": "AI评估测试-(OpenAI/混元/千问/Claude/Gemini)",
+      "triggerFrom": {
+        "id": 12,
+        "taskName": "AI评估"
+      },
+      "status": "success",
+      "startTime": "2024-09-19 15:22:34",
+      "elapse": 521,
+      "passRate": 0.72
+    },
+    {
+      "id": 1277396,
+      "taskName": "AI评估测试-(OpenAI/混元/千问/Claude/Gemini)",
+      "triggerFrom": {
+        "id": 12,
+        "taskName": "AI评估"
+      },
+      "status": "error",
+      "startTime": "2024-09-19 15:22:34",
+      "elapse": 960,
+      "passRate": 0.72
+    },
+    {
+      "id": 1277397,
+      "taskName": "AI评估测试-(OpenAI/混元/千问/Claude/Gemini)",
+      "triggerFrom": {
+        "id": 12,
+        "taskName": "AI评估"
+      },
+      "status": "cancel",
+      "startTime": "2024-09-19 15:22:34",
+      "elapse": 3286,
+      "passRate": 0.72
+    }
+  ],
+  "total": 20,
+  "pageSize": 10,
+  "current": 1
+}
